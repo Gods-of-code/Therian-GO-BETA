@@ -1,0 +1,63 @@
+backend/
+├── app/
+│   ├── __init__.py
+│   ├── main.py                 # Punto de entrada, configuración de la app
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── config.py           # Variables de entorno y settings globales
+│   │   └── security.py          # JWT, hashing de contraseñas
+│   ├── config/
+│   │   ├── __init__.py
+│   │   └── database.py          # Conexión a MongoDB, índices
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── user.py              # usuarios
+│   │   ├── profile.py           # perfiles + datos personales
+│   │   ├── therian_type.py      # catálogo tipos therian
+│   │   ├── identification_level.py # catálogo niveles
+│   │   ├── profile_therian.py   # relación perfil + tipo therian + nivel
+│   │   ├── relationship_goal.py # catálogo metas de relación
+│   │   ├── profile_relationship_goal.py # metas por perfil
+│   │   ├── location.py          # ubicaciones
+│   │   ├── profile_location.py  # ubicaciones por perfil
+│   │   ├── photo.py             # fotos
+│   │   ├── like.py              # likes entre perfiles
+│   │   ├── match.py             # matches
+│   │   └── message.py           # mensajes
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── user.py              # validación usuarios
+│   │   ├── profile.py           # validación perfiles
+│   │   ├── therian.py           # validación tipos/niveles
+│   │   ├── relationship.py      # validación metas
+│   │   ├── location.py          # validación ubicaciones
+│   │   ├── photo.py             # validación fotos
+│   │   ├── like.py              # validación likes
+│   │   ├── match.py             # validación matches
+│   │   └── message.py           # validación mensajes
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── dependencies/
+│   │   │   ├── __init__.py
+│   │   │   └── auth.py          # protección de rutas, usuario actual
+│   │   └── endpoints/
+│   │       ├── __init__.py
+│   │       ├── auth.py          # login, registro, refresh token
+│   │       ├── users.py         # CRUD usuarios
+│   │       ├── profiles.py      # CRUD perfiles
+│   │       ├── therian.py       # catálogos therian
+│   │       ├── identification_levels.py # catálogos niveles
+│   │       ├── profile_therian.py # asignar tipos/niveles a perfil
+│   │       ├── relationship_goals.py # catálogos metas
+│   │       ├── profile_relationship_goals.py # asignar metas a perfil
+│   │       ├── locations.py     # CRUD ubicaciones
+│   │       ├── profile_locations.py # asignar ubicaciones a perfil
+│   │       ├── photos.py        # subir/eliminar fotos, marcar principal
+│   │       ├── likes.py         # dar like, quitar like, ver quien te dio like
+│   │       ├── matches.py       # ver matches, deshacer match
+│   │       └── messages.py      # enviar/recibir mensajes, marcar leídos
+│   └── utils/
+│       ├── __init__.py
+│       └── helpers.py           # funciones auxiliares
+├── .env                          # variables de entorno
+
