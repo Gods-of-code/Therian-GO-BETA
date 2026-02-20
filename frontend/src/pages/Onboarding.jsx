@@ -12,7 +12,7 @@ export default function Onboarding() {
     const slides = [
         {
         image: welcome,
-        title: "Bienvenido a Therian Now",
+        title: "Bienvenido a Therian Go",
         text: "Un espacio seguro para conectar con otros miembros de la comunidad therian"
         },
         {
