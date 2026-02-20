@@ -11,6 +11,7 @@ body {
 }
 
 .onboarding {
+    background-color: red;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -211,3 +212,4 @@ input:focus {
 .bottom-nav a.active {
     color: var(--primary);
 }
+
