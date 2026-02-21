@@ -1,11 +1,14 @@
-// services/matchesService.js
+// matches-services/matchesService.js
 /*
-Idea: Defini rutas generales para luego conectarla correctamente
+Idea: defini rutas generales para luego conectarla correctamente
 a los endpoints.
+
+Uso: comunicación directa al backend (llamadas HTTP), capa de acceso a API ->
+no maneja estados, ni contiene logica de aplicación.
 */
 
 const API_URL = "http://localhost:8000/api"; 
-// luego podemos pasar esto a variables de entorno
+// Luego podemos pasar esto a variables de entorno
 
 export const matchesService = {
 
