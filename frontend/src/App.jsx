@@ -8,6 +8,7 @@ import Discover from "./pages/Discover";
 import Matches from "./pages/Matches";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
+import EditProfile from "./pages/EditProfile";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="matches" element={<Matches />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="edit-profile" element={<EditProfile />} />
         </Route>
 
       </Routes>
