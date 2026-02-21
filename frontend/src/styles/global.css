@@ -257,26 +257,7 @@ input:focus {
 
 /* BottomNav */
 
-.bottom-nav {
-    position: fixed;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
 
-    width: 100%;
-    max-width: 390px;
-    height: 70px;
-
-    background: white;
-    border-radius: 40px;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    padding: 0 10px;
-}
 
 .nav-item {
     flex: 1;
@@ -287,8 +268,6 @@ input:focus {
     justify-content: center;
 
     gap: 4px;
-    height: 100%;
-
     text-decoration: none;
     font-size: 11px;
     font-weight: 500;
@@ -296,7 +275,6 @@ input:focus {
 
     transition: 0.3s ease;
 }
-
 
 .nav-item img {
     width: 22px;
@@ -314,25 +292,3 @@ input:focus {
     filter: drop-shadow(0 5px 8px rgba(110,44,145,0.3));
 }
 
-.icon-wrapper {
-    position: relative;
-}
-
-.badge {
-    position: absolute;
-    top: -6px;
-    right: -8px;
-
-    background: #ff3b3b;
-    color: white;
-    font-size: 9px;
-    font-weight: 600;
-
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
