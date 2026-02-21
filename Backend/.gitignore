@@ -1,0 +1,50 @@
+# ========== Entornos ==========
+.env
+.env.*
+venv/
+.venv/
+env/
+ENV/
+
+# ========== Python ==========
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# ========== Tests / coverage ==========
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# ========== IDEs ==========
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ========== Logs ==========
+*.log
+logs/
+
+# ========== OS ==========
+.DS_Store
+Thumbs.db
+
+# ========== Docker ==========
+*.pid
+docker-data/
+
+# ========== FastAPI / Uvicorn ==========
+*.sqlite3
+*.db
+
+# ========== MongoDB local ==========
+data/
+mongo-data/
