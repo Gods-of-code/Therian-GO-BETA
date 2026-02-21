@@ -5,7 +5,7 @@ export default function Profile() {
     return (
         <div className="page">
         <h1>Profile</h1>
-        <p>Perfil del usuario.</p>
+        <p>Este es tu perfil</p>
 
         <Button>Editar Perfil</Button>
         </div>
