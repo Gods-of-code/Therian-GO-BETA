@@ -1,13 +1,17 @@
-import Button from "../components/Button";
+import MatchesTabs from "../components/matches/MatchesTabs";
+import ChatList from "../components/matches/ChatList";
+import ChatItem from "../components/matches/ChatItem";
 
 export default function Matches() {
     return (
-        
-        <div className="page">
-        <h1>Matches</h1>
-        <p>Aquí aparecerán los matches.</p>
+        <MatchesTabs>
+            <div name="chats"> 
+                <ChatList></ChatList>
+            </div>
 
-        <Button>Ver Match</Button>
-        </div>
+            <div name="new">
+                {/* <NewMatchCard */} 
+            </div>
+        </MatchesTabs>
     );
 }

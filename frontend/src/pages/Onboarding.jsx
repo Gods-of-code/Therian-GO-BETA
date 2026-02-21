@@ -6,7 +6,7 @@ import match from "../assets/images/match.png";
 import chat from "../assets/images/chat.png";
 
 export default function Onboarding() {
-    
+
     const [current, setCurrent] = useState(0);
 
     const slides = [
@@ -21,6 +21,7 @@ export default function Onboarding() {
         text: "Desliza para descubrir perfiles que resuenen con tu espíritu"
         },
         {
+            
         image: match,
         title: "Haz Match",
         text: "Cuando ambos se gustan, se crea una conexión auténtica"
