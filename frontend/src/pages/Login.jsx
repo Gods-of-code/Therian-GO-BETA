@@ -1,33 +1,89 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../assets/images/login.png";
 import Button from "../components/Button";
 
+const API_URL = "http://localhost:8000";
 
 export default function Login() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("Inicio de sesión simulado");
-        window.location.href = "/app/discover"
+        setError("");
+        setLoading(true);
+
+        try {
+            // OAuth2PasswordRequestForm espera 'username' y 'password'
+            // Usamos email como username
+            const formData = new URLSearchParams();
+            formData.append("username", email);
+            formData.append("password", password);
+
+            const response = await fetch(`${API_URL}/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.detail || "Error al iniciar sesión");
+            }
+
+            const data = await response.json();
+            
+            // Guardar token en localStorage
+            localStorage.setItem("token", data.access_token);
+            localStorage.setItem("token_type", data.token_type);
+            
+            // Redirigir a la app
+            navigate("/app/discover");
+            
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div className="auth-container">
             <div className="auth-card">
-
-                <img src={loginImg} className="logo" />
-
+                <img src={loginImg} className="logo" alt="Therian Go" />
                 <h1>Therian Go</h1>
                 <p className="subtitle">Conecta con tu comunidad</p>
 
+                {error && <div className="error-message" style={{color: "red", marginBottom: "10px"}}>{error}</div>}
+
                 <form onSubmit={handleSubmit}>
                     <label>Email</label>
-                    <input type="email" placeholder="tu@email.com" required />
+                    <input 
+                        type="email" 
+                        placeholder="tu@email.com" 
+                        required 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
                     <label>Contraseña</label>
-                    <input type="password" placeholder="********" required />
+                    <input 
+                        type="password" 
+                        placeholder="********" 
+                        required 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
-                    <Button> Iniciar sesión </Button>
+                    <Button disabled={loading}>
+                        {loading ? "Cargando..." : "Iniciar sesión"}
+                    </Button>
                 </form>
 
                 <div className="divider">
@@ -42,7 +98,6 @@ export default function Login() {
                 <p className="switch">
                     ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
                 </p>
-
             </div>
         </div>
     );
