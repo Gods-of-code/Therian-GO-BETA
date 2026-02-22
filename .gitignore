@@ -1,16 +1,10 @@
+# ========== Node / Frontend ==========
 node_modules/
-frontend/node_modules/
 dist/
 .vite/
-# ========== Entornos ==========
-.env
-.env.*
-venv/
-.venv/
-env/
-ENV/
+*.local
 
-# ========== Python ==========
+# ========== Python / Backend ==========
 __pycache__/
 *.py[cod]
 *.pyo
@@ -18,14 +12,34 @@ __pycache__/
 *.so
 *.egg-info/
 .eggs/
-dist/
 build/
+*.whl
 
-# ========== Tests / coverage ==========
+# ========== Entornos ==========
+.env
+.env.*
+!.env.example
+*venv/
+.venv/
+env/
+ENV/
+*.cfg
+
+# ========== FastAPI / Uvicorn ==========
+*.sqlite3
+*.db
+
+# ========== MongoDB ==========
+data/
+mongo-data/
+docker-data/
+
+# ========== Tests / Coverage ==========
 .coverage
 htmlcov/
 .pytest_cache/
 .tox/
+coverage/
 
 # ========== IDEs ==========
 .vscode/
@@ -43,12 +57,3 @@ Thumbs.db
 
 # ========== Docker ==========
 *.pid
-docker-data/
-
-# ========== FastAPI / Uvicorn ==========
-*.sqlite3
-*.db
-
-# ========== MongoDB local ==========
-data/
-mongo-data/

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/global.css";
+import "./Onboarding.css";
 import welcome from "../assets/images/welcome.png";
 import heart from "../assets/images/heart.png";
 import match from "../assets/images/match.png";
@@ -67,7 +67,7 @@ export default function Onboarding() {
                         </button>
 
                         {current !== slides.length - 1 && (
-                            <button 
+                            <button
                                 className="btn-skip"
                                 onClick={() => window.location.href = "/login"}
                             >

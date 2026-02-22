@@ -1,0 +1,210 @@
+.edit-profile {
+    padding: 16px;
+}
+
+.edit-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.edit-exit-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 0;
+}
+
+.edit-exit-btn img {
+    width: 18px;
+    height: 18px;
+}
+
+.edit-section {
+    margin-top: 24px;
+}
+
+.edit-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.edit-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #6f2d91;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    outline: none;
+}
+
+.edit-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #6f2d91;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.edit-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #6f2d91;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.edit-interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.edit-interest {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background-color: #6f2d91;
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.edit-interest-remove {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.edit-interest-add {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.edit-interest-btn {
+    padding: 10px 16px;
+    background-color: #6f2d91;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.edit-save-btn {
+    margin-top: 32px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 16px;
+    padding: 24px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.modal-option {
+    background-color: #f3e8ff;
+    color: #6f2d91;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+}
+
+.modal-option--danger {
+    background-color: #fde8e8;
+    color: #c0392b;
+}
+
+.modal-preview {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.profile-photo-add {
+    aspect-ratio: 1;
+    border-radius: 10px;
+    border: 2px dashed #6f2d91;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6f2d91;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+.looking-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.looking-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.looking-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+}

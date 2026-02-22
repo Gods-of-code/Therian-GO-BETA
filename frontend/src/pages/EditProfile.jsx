@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./EditProfile.css";
+import "./Settings.css";
 import Button from "../components/Button";
 import flecha from "../assets/images/flecha.png";
 import { useProfile } from "../pages/ProfileContext";
@@ -41,29 +43,29 @@ export default function EditProfile() {
     };
 
     const handleToggle = (key) => {
-    setLookingFor({
-        ...lookingFor,
-        [key]: !lookingFor[key]
-    });
-};
+        setLookingFor({
+            ...lookingFor,
+            [key]: !lookingFor[key]
+        });
+    };
 
-const handleAddInterest = () => {
-    if (!newInterest.trim()) return;
-    if (interests.includes(newInterest.trim())) return;
-    setInterests([...interests, newInterest.trim()]);
-    setNewInterest("");
-};
+    const handleAddInterest = () => {
+        if (!newInterest.trim()) return;
+        if (interests.includes(newInterest.trim())) return;
+        setInterests([...interests, newInterest.trim()]);
+        setNewInterest("");
+    };
 
-const handleRemoveInterest = (index) => {
-    setInterests(interests.filter((_, i) => i !== index));
-};
+    const handleRemoveInterest = (index) => {
+        setInterests(interests.filter((_, i) => i !== index));
+    };
 
     return (
-        
+
         <div className="edit-profile">
 
             <div className="edit-header">
-                <button 
+                <button
                     className="edit-exit-btn"
                     onClick={() => navigate("/app/profile")}
                 >

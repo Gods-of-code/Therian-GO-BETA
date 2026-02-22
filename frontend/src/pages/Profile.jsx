@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "../styles/global.css";
+import "./Profile.css";
+import "./EditProfile.css";
 import ProfileAvatar from "../components/profile/ProfileAvatar";
 import location from "../assets/images/location.png";
 import ProfilePhotos from "../components/profile/ProfilePhotos";
@@ -15,7 +16,7 @@ export default function Profile() {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [showAddPhoto, setShowAddPhoto] = useState(false);
-    
+
     return (
         <div>
             <ProfileAvatar src={photoUrl} />
@@ -29,7 +30,7 @@ export default function Profile() {
 
             {city && (
                 <div className="profile-city">
-                    <img src={location} alt="ubicacion" className="profile-city-icon"/>
+                    <img src={location} alt="ubicacion" className="profile-city-icon" />
                     <span>{city}</span>
                 </div>
             )}

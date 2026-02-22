@@ -1,23 +1,23 @@
 import { Outlet } from "react-router-dom";
 import BottomNav from "../components/BottomNav";
-import "../styles/global.css";
+import "./AppLayout.css";
 
 export default function AppLayout() {
     return (
         <div className="app-wrapper">
-        <div className="app-container">
+            <div className="app-container">
 
-            <header className="app-header">
-            <h1>Therian GO</h1>
-            </header>
+                <header className="app-header">
+                    <h1>Therian GO</h1>
+                </header>
 
-            <main className="app-content">
-            <Outlet />
-            </main>
+                <main className="app-content">
+                    <Outlet />
+                </main>
 
-            <BottomNav />
+                <BottomNav />
 
-        </div>
+            </div>
         </div>
     );
 }

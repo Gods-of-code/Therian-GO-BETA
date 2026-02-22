@@ -1,5 +1,4 @@
-import { useState  } from "react";
-import "../../styles/global.css";
+import { useState } from "react";
 
 
 export default function ProfileAvatar({ src }) {
@@ -7,20 +6,20 @@ export default function ProfileAvatar({ src }) {
 
     if (!src || img_error) {
         return (
-            <div className="profile-avatar avatar-placeholder"/>
+            <div className="profile-avatar avatar-placeholder" />
         );
-        }
-    
+    }
+
     return (
         <div className="profile-avatar">
             <img
-            src={src} 
-            alt="Foto de perfil"
-            className="avatar-image"
-            onError={() => set_img_error(true)}
+                src={src}
+                alt="Foto de perfil"
+                className="avatar-image"
+                onError={() => set_img_error(true)}
             />
         </div>
     );
 
-    
+
 };

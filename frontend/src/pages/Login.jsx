@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Auth.css";
 import loginImg from "../assets/images/login.png";
 import Button from "../components/Button";
 
@@ -18,7 +19,6 @@ export default function Login() {
         setLoading(true);
 
         try {
-            // OAuth2PasswordRequestForm espera form-urlencoded, no JSON
             const formData = new URLSearchParams();
             formData.append("username", email);
             formData.append("password", password);
@@ -37,14 +37,13 @@ export default function Login() {
             }
 
             const data = await response.json();
-            
+
             // Guardar token en localStorage
             localStorage.setItem("token", data.access_token);
             localStorage.setItem("token_type", data.token_type);
-            
-            // Redirigir a la app
+
             navigate("/app/discover");
-            
+
         } catch (err) {
             setError(err.message);
         } finally {
@@ -60,26 +59,26 @@ export default function Login() {
                 <p className="subtitle">Conecta con tu comunidad</p>
 
                 {error && (
-                    <div className="error-message" style={{color: "red", marginBottom: "10px"}}>
+                    <div className="error-message" style={{ color: "red", marginBottom: "10px" }}>
                         {error}
                     </div>
                 )}
 
                 <form onSubmit={handleSubmit}>
                     <label>Email</label>
-                    <input 
-                        type="email" 
-                        placeholder="tu@email.com" 
-                        required 
+                    <input
+                        type="email"
+                        placeholder="tu@email.com"
+                        required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
                     <label>Contraseña</label>
-                    <input 
-                        type="password" 
-                        placeholder="********" 
-                        required 
+                    <input
+                        type="password"
+                        placeholder="********"
+                        required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />

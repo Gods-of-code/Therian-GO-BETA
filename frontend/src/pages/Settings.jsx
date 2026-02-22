@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./Settings.css";
 import flecha from "../assets/images/flecha.png";
 import solYLuna from "../assets/images/sol-y-luna.png";
 import filtrar from "../assets/images/filtrar.png";
