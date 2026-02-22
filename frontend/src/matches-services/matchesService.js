@@ -13,29 +13,20 @@ const API_URL = "http://localhost:8000";
 
 export const matchesService = {
 
+  
+ 
+
   async getMatches() {
-  const token = localStorage.getItem("token");
 
-  const response = await fetch(`${API_URL}/matches`, {
-    headers: {
-      "Authorization": `Bearer ${token}`
-    }
-  });
-
+  const response = await fetch(`${API_URL}/matches`);
   if (!response.ok) {
-    throw new Error("Error fetching matches");
-  }
+  throw new Error("Error fetching matches");
 
-  return response.json();
-  },
+}
 
-  async getMessages(matchId) {
-    const response = await fetch(`${API_URL}/matches/${matchId}/messages`);
-    if (!response.ok) {
-      throw new Error("Error fetching messages");
-    }
-    return response.json();
-  },
+return response.json();
+
+},
 
   async sendMessage(matchId, message) {
     const response = await fetch(`${API_URL}/matches/${matchId}/messages`, {
