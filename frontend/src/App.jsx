@@ -9,26 +9,26 @@ import Matches from "./pages/Matches";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import EditProfile from "./pages/EditProfile";
+import { ProfileProvider } from "./pages/ProfileContext";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      <ProfileProvider>
+        <Routes>
+          <Route index element={<Onboarding />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
 
-        <Route index element={<Onboarding />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-
-        <Route path="app" element={<AppLayout />}>
-          <Route path="discover" element={<Discover />} />
-          <Route path="matches" element={<Matches />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="edit-profile" element={<EditProfile />} />
-        </Route>
-
-      </Routes>
+          <Route path="app" element={<AppLayout />}>
+            <Route path="discover" element={<Discover />} />
+            <Route path="matches" element={<Matches />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="edit-profile" element={<EditProfile />} />
+          </Route>
+        </Routes>
+      </ProfileProvider>
     </BrowserRouter>
-
   );
 }

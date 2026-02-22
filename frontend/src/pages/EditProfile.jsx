@@ -2,47 +2,61 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import flecha from "../assets/images/flecha.png";
+import { useProfile } from "../pages/ProfileContext";
 
 const TYPE_OPTIONS = ["Wolf", "Fox", "Cat", "Bear", "Deer", "Other"];
 
 export default function EditProfile() {
+
+    const { profile, setProfile } = useProfile();
     const navigate = useNavigate();
 
-    const [type, setType] = useState("wolf");
-    const [city, setCity] = useState("Pereira");
-    const [bio, setBio] = useState("Cuéntale a los demás algo sobre ti!");
-    const [interests, setInterests] = useState(["Música", "Viajes", "Deportes"]);
+    const [type, setType] = useState(profile.type);
+    const [city, setCity] = useState(profile.city);
+    const [bio, setBio] = useState(profile.bio);
+    const [interests, setInterests] = useState(profile.interests);
     const [newInterest, setNewInterest] = useState("");
-
     const [lookingFor, setLookingFor] = useState({
-        amistad: true,
-        pareja: false,
-        comunidad: true,
-        otros: false
+        amistad: profile.searching.includes("amistad"),
+        pareja: profile.searching.includes("pareja"),
+        comunidad: profile.searching.includes("comunidad"),
+        otros: profile.searching.includes("otros"),
     });
 
-    const handleToggle = (key) => {
-        setLookingFor({
-            ...lookingFor,
-            [key]: !lookingFor[key]
-        });
-    };
-
-    const handleAddInterest = () => {
-        if (!newInterest.trim()) return;
-        if (interests.includes(newInterest.trim())) return;
-        setInterests([...interests, newInterest.trim()]);
-        setNewInterest("");
-    };
-
-    const handleRemoveInterest = (index) => {
-        setInterests(interests.filter((_, i) => i !== index));
-    };
-
     const handleSave = () => {
-        console.log({ type, city, bio, interests, lookingFor });
+        const newSearching = Object.entries(lookingFor)
+            .filter(([_, value]) => value)
+            .map(([key]) => key);
+
+        setProfile({
+            ...profile,
+            type,
+            city,
+            bio,
+            interests,
+            searching: newSearching,
+        });
+
         navigate("/app/profile");
     };
+
+    const handleToggle = (key) => {
+    setLookingFor({
+        ...lookingFor,
+        [key]: !lookingFor[key]
+    });
+};
+
+const handleAddInterest = () => {
+    if (!newInterest.trim()) return;
+    if (interests.includes(newInterest.trim())) return;
+    setInterests([...interests, newInterest.trim()]);
+    setNewInterest("");
+};
+
+const handleRemoveInterest = (index) => {
+    setInterests(interests.filter((_, i) => i !== index));
+};
 
     return (
         

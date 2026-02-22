@@ -5,27 +5,17 @@ import location from "../assets/images/location.png";
 import ProfilePhotos from "../components/profile/ProfilePhotos";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import { useProfile } from "../pages/ProfileContext";
 
 export default function Profile() {
 
-    const photoUrl = null;
-    const name = "thomas";
-    const type = "wolf";
-    const age = 19;
-    const city = "Pereira";
-    const searching = ["amistad", "pareja", "Papás"]; 
-    const bio = "Cuentale a los demás algo sobre ti!";
-    const interests = ["Música", "Viajes", "Deportes"]; 
-    const photos = [
-        "https://picsum.photos/200",
-        "https://picsum.photos/201",
-        "https://picsum.photos/202",
-    ];
-    
+    const { profile } = useProfile();
+    const { name, type, age, city, searching, bio, interests, photoUrl, photos } = profile;
+
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [showAddPhoto, setShowAddPhoto] = useState(false);
-
+    
     return (
         <div>
             <ProfileAvatar src={photoUrl} />
@@ -73,7 +63,7 @@ export default function Profile() {
                 </div>
             )}
 
-            <ProfilePhotos photos={photos} isOwner={showAddPhoto} />
+            <ProfilePhotos isOwner={showAddPhoto} />
 
             <div className="profile-edit-btn">
                 <Button onClick={() => setShowModal(true)}>
