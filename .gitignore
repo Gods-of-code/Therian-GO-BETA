@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 node_modules/
 frontend/node_modules/
 dist/
 .vite/
-=======
 # ========== Entornos ==========
 .env
 .env.*
@@ -54,4 +52,3 @@ docker-data/
 # ========== MongoDB local ==========
 data/
 mongo-data/
->>>>>>> backend
