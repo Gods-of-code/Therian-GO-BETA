@@ -10,7 +10,7 @@ from .location import Location
 
 class Photo(BaseModel):
     id_photo: Optional[str] = None 
-    photo_url = str
+    photo_url: str
     is_main: bool = False 
     uploaded_at: datetime = Field(default_factory=datetime.now)
 
@@ -18,7 +18,7 @@ class Photo(BaseModel):
 
 class ProfileTherianIdentity(BaseModel):
 
-    id_therian_type: str  # ID que apunta a TherianType
+    id_therian_type: str
     personal_description: Optional[str] = None
     
 
@@ -36,7 +36,7 @@ class Profile(BaseModel):
 
     therian_identities: List[ProfileTherianIdentity] = []
 
-    goal_ids: List[str] = []  # IDs que apuntan a RelationshipGoal
+    goal_ids: List[str] = []
     
     goals_details: List[Relationship_goal] = [] 
      
@@ -46,7 +46,6 @@ class Profile(BaseModel):
 
     user_details: Optional[User] = None
     
-    # Estadísticas
     likes_received: int = 0
     total_matches: int = 0
 
