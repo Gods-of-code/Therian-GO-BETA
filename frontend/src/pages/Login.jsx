@@ -18,8 +18,7 @@ export default function Login() {
         setLoading(true);
 
         try {
-            // OAuth2PasswordRequestForm espera 'username' y 'password'
-            // Usamos email como username
+            // OAuth2PasswordRequestForm espera form-urlencoded, no JSON
             const formData = new URLSearchParams();
             formData.append("username", email);
             formData.append("password", password);
@@ -60,7 +59,11 @@ export default function Login() {
                 <h1>Therian Go</h1>
                 <p className="subtitle">Conecta con tu comunidad</p>
 
-                {error && <div className="error-message" style={{color: "red", marginBottom: "10px"}}>{error}</div>}
+                {error && (
+                    <div className="error-message" style={{color: "red", marginBottom: "10px"}}>
+                        {error}
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit}>
                     <label>Email</label>
