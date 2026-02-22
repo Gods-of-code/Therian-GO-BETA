@@ -7,17 +7,26 @@ Uso: comunicación directa al backend (llamadas HTTP), capa de acceso a API ->
 no maneja estados, ni contiene logica de aplicación.
 */
 
-const API_URL = "http://localhost:8000/api"; 
+const API_URL = "http://localhost:8000"; 
+
 // Luego podemos pasar esto a variables de entorno
 
 export const matchesService = {
 
   async getMatches() {
-    const response = await fetch(`${API_URL}/matches`);
-    if (!response.ok) {
-      throw new Error("Error fetching matches");
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${API_URL}/matches`, {
+    headers: {
+      "Authorization": `Bearer ${token}`
     }
-    return response.json();
+  });
+
+  if (!response.ok) {
+    throw new Error("Error fetching matches");
+  }
+
+  return response.json();
   },
 
   async getMessages(matchId) {
