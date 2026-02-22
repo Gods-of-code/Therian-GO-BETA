@@ -3,7 +3,7 @@ import "./Auth.css";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "http://10.15.251.16:8000";
 
 export default function Register() {
     const [email, setEmail] = useState("");

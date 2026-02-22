@@ -1,21 +1,25 @@
 .onboarding {
-    background-color: #f3f3f3;
+    background-color: #f0f0f0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px 20px 20px 20px;
 }
 
 .slider {
+    height: 100%;
     width: 100%;
     max-width: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 .progress {
     display: flex;
     justify-content: center;
     gap: 6px;
-    margin-bottom: 30px;
+    padding-top: 20px;
 }
 
 .dot {
@@ -31,12 +35,18 @@
 
 .slide {
     text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 80%;
 }
 
 .content img {
@@ -54,12 +64,15 @@
 }
 
 .actions {
-    margin-top: 30px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .btn-primary {
-    width: 100%;
-    padding: 14px;
+    min-width: 120px;
+    padding: 14px 24px;
     border: none;
     border-radius: var(--radius);
     background: var(--primary);
@@ -73,19 +86,18 @@
 }
 
 .btn-skip {
-    width: 100%;
-    padding: 14px;
+    width: 50%;
+    padding: 8px 14px;
     margin-top: 12px;
     border-radius: 25px;
     border: none;
-    background: rgba(110, 44, 145, 0.12);
-    color: var(--primary);
+    background-color: transparent;
+    color: #838383;
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
-    transition: var(--transition);
 }
 
 .btn-skip:hover {
-    background: rgba(110, 44, 145, 0.18);
+    text-decoration: underline;
 }

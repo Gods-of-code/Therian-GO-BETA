@@ -6,6 +6,7 @@
 }
 
 .auth-card {
+    margin: 20px;
     width: 100%;
     max-width: 380px;
     padding: 35px 25px;
@@ -46,6 +47,8 @@ input:focus {
 
 .btn-primary {
     margin-top: 10px;
+    width: 50%;
+    align-self: center;
     padding: 14px;
     border-radius: 25px;
     background: var(--primary);

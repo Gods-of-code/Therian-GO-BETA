@@ -63,7 +63,7 @@ export default function Onboarding() {
 
                     <div className="actions">
                         <button className="btn-primary" onClick={nextSlide}>
-                            {current === slides.length - 1 ? "Comenzar →" : "Siguiente →"}
+                            {current === slides.length - 1 ? "Comenzar" : "Siguiente"}
                         </button>
 
                         {current !== slides.length - 1 && (
