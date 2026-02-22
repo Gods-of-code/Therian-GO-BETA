@@ -537,6 +537,12 @@ input:focus {
     font-weight: 500;
 }
 
+.profile-searching-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
 .profile-section {
     margin-top: 24px;
 }
@@ -583,19 +589,6 @@ input:focus {
     display: flex;
     justify-content: center;
 }
-
-.profile-photo-add {
-    aspect-ratio: 1;
-    border-radius: 10px;
-    border: 2px dashed #6f2d91;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #6f2d91;
-    font-size: 28px;
-    cursor: pointer;
-}
-
 /* SETTINGS CSS OJO */
 
 .settings-page {

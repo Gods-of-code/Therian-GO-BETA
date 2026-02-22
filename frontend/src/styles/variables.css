@@ -1,15 +1,13 @@
 :root {
-    --background: #F4EBF4;
-    --card-bg: #ffffff;
-
     --primary: #6E2C91;
     --primary-light: #8E44AD;
-
+    --background: #F4EBF4;
     --text-dark: #2D1B3D;
     --text-light: #6C5A7A;
     --white: #FFFFFF;
 
-    --radius: 20px;
+    --radius: 30px;
     --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
     --transition: all 0.3s ease;
 }
