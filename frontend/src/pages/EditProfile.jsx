@@ -1,21 +1,35 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import flecha from "../assets/images/flecha.png";
 
 const TYPE_OPTIONS = ["Wolf", "Fox", "Cat", "Bear", "Deer", "Other"];
 
 export default function EditProfile() {
     const navigate = useNavigate();
 
-    // Estados con valores actuales del usuario (vendrán del backend)
     const [type, setType] = useState("wolf");
     const [city, setCity] = useState("Pereira");
-    const [bio, setBio] = useState("Cuentale a los demás algo sobre ti!");
+    const [bio, setBio] = useState("Cuéntale a los demás algo sobre ti!");
     const [interests, setInterests] = useState(["Música", "Viajes", "Deportes"]);
     const [newInterest, setNewInterest] = useState("");
 
+    const [lookingFor, setLookingFor] = useState({
+        amistad: true,
+        pareja: false,
+        comunidad: true,
+        otros: false
+    });
+
+    const handleToggle = (key) => {
+        setLookingFor({
+            ...lookingFor,
+            [key]: !lookingFor[key]
+        });
+    };
+
     const handleAddInterest = () => {
-        if (newInterest.trim() === "") return;
+        if (!newInterest.trim()) return;
         if (interests.includes(newInterest.trim())) return;
         setInterests([...interests, newInterest.trim()]);
         setNewInterest("");
@@ -26,15 +40,24 @@ export default function EditProfile() {
     };
 
     const handleSave = () => {
-        // aquí irá la llamada al backend para guardar los cambios
-        console.log({ type, city, bio, interests });
+        console.log({ type, city, bio, interests, lookingFor });
         navigate("/app/profile");
-    };    
+    };
 
     return (
+        
         <div className="edit-profile">
 
-            {/* Type */}
+            <div className="edit-header">
+                <button 
+                    className="edit-exit-btn"
+                    onClick={() => navigate("/app/profile")}
+                >
+                    <img src={flecha} alt="Salir" />
+                    <span>Salir</span>
+                </button>
+            </div>
+
             <div className="edit-section">
                 <h3 className="edit-section-title">Type</h3>
                 <select
@@ -50,7 +73,6 @@ export default function EditProfile() {
                 </select>
             </div>
 
-            {/* Ciudad */}
             <div className="edit-section">
                 <h3 className="edit-section-title">Ciudad</h3>
                 <input
@@ -58,25 +80,22 @@ export default function EditProfile() {
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    placeholder="Tu ciudad"
                 />
             </div>
 
-            {/* Sobre mí */}
             <div className="edit-section">
                 <h3 className="edit-section-title">Sobre mí</h3>
                 <textarea
                     className="edit-textarea"
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
-                    placeholder="Cuéntale a los demás algo sobre ti"
                     rows={4}
                 />
             </div>
 
-            {/* Intereses */}
             <div className="edit-section">
                 <h3 className="edit-section-title">Intereses</h3>
+
                 <div className="edit-interests">
                     {interests.map((interest, index) => (
                         <span key={index} className="edit-interest">
@@ -90,6 +109,7 @@ export default function EditProfile() {
                         </span>
                     ))}
                 </div>
+
                 <div className="edit-interest-add">
                     <input
                         className="edit-input"
@@ -99,11 +119,34 @@ export default function EditProfile() {
                         placeholder="Añadir interés"
                         onKeyDown={(e) => e.key === "Enter" && handleAddInterest()}
                     />
-                    <button className="edit-interest-btn" onClick={handleAddInterest}>+</button>
+                    <button className="edit-interest-btn" onClick={handleAddInterest}>
+                        +
+                    </button>
                 </div>
             </div>
 
-            {/* Botón guardar */}
+            <div className="edit-section">
+                <h3 className="edit-section-title">Buscando</h3>
+
+                <div className="looking-options">
+                    {Object.entries(lookingFor).map(([key, value]) => (
+                        <div className="looking-row" key={key}>
+                            <span className="looking-label">
+                                {key.charAt(0).toUpperCase() + key.slice(1)}
+                            </span>
+                            <label className="toggle">
+                                <input
+                                    type="checkbox"
+                                    checked={value}
+                                    onChange={() => handleToggle(key)}
+                                />
+                                <span className="toggle-slider"></span>
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
             <div className="edit-save-btn">
                 <Button onClick={handleSave}>
                     Guardar cambios
