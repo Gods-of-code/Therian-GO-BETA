@@ -1,7 +1,18 @@
 import { useState } from "react";
+import { useProfile } from "../../pages/ProfileContext";
 
-export default function ProfilePhotos({ photos = [], isOwner = false }) {
+export default function ProfilePhotos({ isOwner = false }) {
+    const { profile, setProfile } = useProfile();
+    const { photos } = profile;
     const [photoToDelete, setPhotoToDelete] = useState(null);
+
+    const handleDelete = () => {
+        setProfile({
+            ...profile,
+            photos: photos.filter((p) => p !== photoToDelete)
+        });
+        setPhotoToDelete(null);
+    };
 
     return (
         <div className="profile-section">
@@ -28,10 +39,7 @@ export default function ProfilePhotos({ photos = [], isOwner = false }) {
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <h3 className="modal-title">¿Deseas eliminar esta foto?</h3>
                         <img src={photoToDelete} alt="foto a eliminar" className="modal-preview" />
-                        <button className="modal-option modal-option--danger" onClick={() => {
-                            // llamada al backend para eliminar la foto
-                            setPhotoToDelete(null);
-                        }}>
+                        <button className="modal-option modal-option--danger" onClick={handleDelete}>
                             Eliminar
                         </button>
                         <button className="modal-option" onClick={() => setPhotoToDelete(null)}>

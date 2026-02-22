@@ -222,10 +222,6 @@ input:focus {
     overflow-y: auto;
 }
 
-html, body {
-    height: 100%;
-    overflow: hidden;
-}
 
 
 .bottom-nav {
