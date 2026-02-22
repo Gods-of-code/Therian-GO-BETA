@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.db import connect_db, close_db
 from app.ensure_indexes import ensure_indexes
 from app.routes import users, profiles, matches, auth, likes, messages
+from fastapi.middleware.cors import CORSMiddleware 
 
 
 @asynccontextmanager
@@ -19,6 +20,16 @@ app = FastAPI(
     version="0.1.0",
     lifespan=lifespan,
 )
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://localhost:3000"],  # Orígenes del frontend
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos los métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permitir todos los headers
+)
+
 
 app.include_router(auth.router)
 app.include_router(users.router)
