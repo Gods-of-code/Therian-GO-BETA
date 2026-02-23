@@ -1,0 +1,89 @@
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    margin: 20px;
+    width: 100%;
+    max-width: 380px;
+    padding: 35px 25px;
+    text-align: center;
+    background: var(--card-bg);
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+}
+
+.logo {
+    width: 55px;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+}
+
+input {
+    padding: 12px;
+    border-radius: 18px;
+    border: 1px solid #ddd;
+    background: #f3f3f3;
+}
+
+input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.btn-primary {
+    margin-top: 10px;
+    width: 50%;
+    align-self: center;
+    padding: 14px;
+    border-radius: 25px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.divider {
+    margin: 20px 0;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.social-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-social {
+    flex: 1;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+
+.switch {
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.switch a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
