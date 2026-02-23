@@ -76,7 +76,7 @@ export default function Discover() {
                 </button>
 
                 <button className="like" onClick={handleLike}>
-                    *
+                    ❤
                 </button>
 
             </div>
