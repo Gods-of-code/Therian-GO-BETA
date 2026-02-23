@@ -178,12 +178,17 @@ input[type="range"] {
 }
 
 /* Dark mode overrides */
+
 body.dark .settings-button {
-    background: #2a2a2a;
-    border-color: #333;
+    background: #3c004d;
+    border-color: #212121;
     color: white;
 }
 
 body.dark .settings-section {
     border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark img {
+    filter: brightness(0) invert(1);
 }

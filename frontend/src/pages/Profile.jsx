@@ -1,24 +1,43 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Profile.css";
 import "./EditProfile.css";
 import ProfileAvatar from "../components/profile/ProfileAvatar";
 import location from "../assets/images/location.png";
-import ProfilePhotos from "../components/profile/ProfilePhotos";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { useProfile } from "../pages/ProfileContext";
 
 export default function Profile() {
 
-    const { profile } = useProfile();
-    const { name, type, age, city, searching, bio, interests, photoUrl, photos } = profile;
+    const { profile, setProfile } = useProfile();
+    const { name, type, age, city, bio, interests, photoUrl, photos = [] } = profile;
 
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
-    const [showAddPhoto, setShowAddPhoto] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+
+    const fileInputRef = useRef(null);
+
+    const handleAddPhoto = (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setProfile(prev => ({
+                ...prev,
+                photos: [...(prev.photos || []), reader.result]
+            }));
+        };
+
+        reader.readAsDataURL(file);
+        event.target.value = null;
+    };
 
     return (
         <div>
+
             <ProfileAvatar src={photoUrl} />
 
             {name && <h2 className="profile-name">{name}</h2>}
@@ -35,62 +54,118 @@ export default function Profile() {
                 </div>
             )}
 
-            {searching.length > 0 && (
-                <div className="profile-searching">
-                    <span className="profile-searching-label">Buscando:</span>
-                    <div className="profile-searching-values">
-                        {searching.map((item, index) => (
-                            <span key={index} className="profile-searching-value">{item}</span>
-                        ))}
-                    </div>
-                </div>
-            )}
-
             {bio && (
                 <div className="profile-section">
-                    <h3 className="profile-section-title">Sobre mí</h3>
-                    <p className="profile-bio">{bio}</p>
+                    <h3>Sobre mí</h3>
+                    <p>{bio}</p>
                 </div>
             )}
 
-            {interests.length > 0 && (
+            {interests?.length > 0 && (
                 <div className="profile-section">
-                    <h3 className="profile-section-title">Intereses</h3>
+                    <h3>Intereses</h3>
                     <div className="profile-interests">
                         {interests.map((interest, index) => (
-                            <span key={index} className="profile-type">{interest}</span>
+                            <span key={index} className="profile-type">
+                                {interest}
+                            </span>
                         ))}
                     </div>
                 </div>
             )}
 
-            <ProfilePhotos isOwner={showAddPhoto} />
+            {/* FOTOS */}
+            <div className="profile-section">
+                <h3>Fotos</h3>
 
-            <div className="profile-edit-btn">
-                <Button onClick={() => setShowModal(true)}>
-                    Editar perfil
-                </Button>
+                <div className="photos-grid">
+
+                    {photos.map((photo, index) => (
+                        <div key={index} className="photo-item">
+                            <img src={photo} alt="profile" />
+
+                            {isEditing && (
+                                <button
+                                    className="delete-photo"
+                                    onClick={() => {
+                                        setProfile(prev => ({
+                                            ...prev,
+                                            photos: prev.photos.filter((_, i) => i !== index)
+                                        }));
+                                    }}
+                                >
+                                    ×
+                                </button>
+                            )}
+                        </div>
+                    ))}
+
+                    {isEditing && (
+                        <div
+                            className="add-photo"
+                            onClick={() => fileInputRef.current.click()}
+                        >
+                            +
+                        </div>
+                    )}
+
+                </div>
             </div>
 
+            <div className="profile-edit-btn">
+                {!isEditing ? (
+                    <Button onClick={() => setShowModal(true)}>
+                        Editar perfil
+                    </Button>
+                ) : (
+                    <Button onClick={() => setIsEditing(false)}>
+                        Guardar cambios
+                    </Button>
+                )}
+            </div>
+
+            <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                onChange={handleAddPhoto}
+            />
+
             {showModal && (
-                <div className="modal-overlay" onClick={() => setShowModal(false)}>
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <h3 className="modal-title">¿Qué quieres realizar?</h3>
-                        <button className="modal-option" onClick={() => {
-                            setShowModal(false);
-                            setShowAddPhoto(true);
-                        }}>
+                <div
+                    className="modal-overlay"
+                    onClick={() => setShowModal(false)}
+                >
+                    <div
+                        className="modal"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <h3>¿Qué quieres realizar?</h3>
+
+                        <button
+                            className="modal-option"
+                            onClick={() => {
+                                setShowModal(false);
+                                setIsEditing(true);
+                            }}
+                        >
                             Añadir o borrar fotos
                         </button>
-                        <button className="modal-option" onClick={() => {
-                            setShowModal(false);
-                            navigate("/app/edit-profile");
-                        }}>
+
+                        <button
+                            className="modal-option"
+                            onClick={() => {
+                                setShowModal(false);
+                                navigate("/app/edit-profile");
+                            }}
+                        >
                             Editar información de tu perfil
                         </button>
                     </div>
                 </div>
             )}
+
         </div>
     );
 }
