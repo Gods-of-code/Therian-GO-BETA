@@ -1,0 +1,116 @@
+
+.discover-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; /* distribución perfecta */
+    
+    background: #e9e4df;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.card {
+    width: 320px;
+    height: 440px; /* más pequeña */
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    position: relative;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.card.left {
+    transform: translateX(-400px) rotate(-15deg);
+    opacity: 0;
+}
+
+.card.right {
+    transform: translateX(400px) rotate(15deg);
+    opacity: 0;
+}
+
+.card-image {
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 18px;
+}
+
+.card-type {
+    display: inline-block;
+    background: #6a2c91;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin: 8px 0;
+}
+
+.card-bio {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.card-section strong {
+    font-size: 14px;
+}
+
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tags span {
+    background: #f0e6f7;
+    color: #6a2c91;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.actions {
+    margin-top: px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.actions button {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+
+.actions button:hover {
+    transform: scale(1.1);
+}
+
+.reject {
+    background: white;
+}
+
+.super {
+    background: #6a2c91;
+    color: white;
+}
+
+.like {
+    background: #e63946;
+    color: white;
+}

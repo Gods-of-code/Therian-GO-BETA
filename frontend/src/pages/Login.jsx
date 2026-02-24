@@ -4,7 +4,7 @@ import "./Auth.css";
 import loginImg from "../assets/images/login.png";
 import Button from "../components/Button";
 
-const API_URL = "http://10.15.251.16:8000";
+const API_URL = "http://127.0.0.1:8000";
 
 export default function Login() {
     const [email, setEmail] = useState("");
