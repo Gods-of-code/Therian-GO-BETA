@@ -31,6 +31,58 @@ class UserPublic(BaseModel):
     disabled: bool = False
 
 
+# ────Refresh Tokens─────────────────────────────────────────── 
+
+class RefreshToken(BaseModel):     #Modelo para refresh tokens en DB
+    id: Optional[str] = None
+    user_id: str
+    token: str
+    expires_at: datetime
+    revoked: bool = False
+    created_at: datetime = Field(default_factory=datetime.now)
+    device_info: Optional[str] = None  # IP, user-agent, etc.
+
+class TokenResponse(BaseModel):
+    """Respuesta de login con refresh token"""
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
+    expires_in: int  #segundos
+
+class RefreshRequest(BaseModel):  #Solicitud de refresh
+    refresh_token: str
+
+# MODELOS PARA RECUPERACIÓN DE CONTRASEÑA
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+    
+    @validator('new_password')
+    def validate_password(cls, v):
+        if len(v) < 8:
+            raise ValueError('La contraseña debe tener al menos 8 caracteres')
+        if not any(c.isupper() for c in v):
+            raise ValueError('Debe contener al menos una mayúscula')
+        if not any(c.islower() for c in v):
+            raise ValueError('Debe contener al menos una minúscula')
+        if not any(c.isdigit() for c in v):
+            raise ValueError('Debe contener al menos un número')
+        return v
+
+    
+class PasswordResetToken(BaseModel):           #Modelo para tokens de reset en DB
+    id: Optional[str] = None
+    email: str
+    token: str
+    expires_at: datetime
+    used: bool = False
+    created_at: datetime = Field(default_factory=datetime.now)
+
+
+
 # ── GeoJSON helper ────────────────────────────────────────────
 
 class GeoJSONPoint(BaseModel):
