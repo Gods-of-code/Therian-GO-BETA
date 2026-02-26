@@ -1,7 +1,12 @@
 from datetime import datetime, date
 from typing import Optional, List
+<<<<<<< HEAD
 from pydantic import BaseModel, EmailStr, Field, validator
 
+=======
+from pydantic import BaseModel, EmailStr, Field
+from pydantic import validator
+>>>>>>> 45ebff7 (fix schemas local changes)
 
 # ── Auth / Users ──────────────────────────────────────────────
 
