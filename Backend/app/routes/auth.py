@@ -15,7 +15,7 @@ from app.models.schemas import (
     UserCreate, UserDB, UserPublic, 
     TokenResponse, RefreshRequest,
     ForgotPasswordRequest, ResetPasswordRequest,
-    RefreshTokenDB, PasswordResetTokenDB
+    RefreshToken, PasswordResetToken
 )
 from app.services.email import EmailService
 
