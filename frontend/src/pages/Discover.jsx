@@ -30,57 +30,59 @@ export default function Discover() {
 
             <div className={`card ${swipeDirection}`}>
 
-                <img src={currentImage} alt="profile" className="card-image" />
+            {/* IMAGEN */}
+            <div
+                className="card-image"
+                style={{ backgroundImage: `url(${currentImage})` }}
+            >
+                <div className="image-overlay" />
 
-                <div className="card-content">
-                    <h2>{name}, {age}</h2>
-
-                    {type && <span className="card-type">{type}</span>}
-
-                    {bio && <p className="card-bio">{bio}</p>}
-
-                    {searching?.length > 0 && (
-                        <div className="card-section">
-                            <strong>Busca:</strong>
-                            <div className="tags">
-                                {searching.map((item, i) => (
-                                    <span key={i}>{item}</span>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {interests?.length > 0 && (
-                        <div className="card-section">
-                            <strong>Intereses:</strong>
-                            <div className="tags">
-                                {interests.map((item, i) => (
-                                    <span key={i}>{item}</span>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
+                <div className="card-header">
+                <h2>{name}, {age}</h2>
+                {profile.location && (
+                    <p className="location">{profile.location}</p>
+                )}
                 </div>
             </div>
 
-            {/* BOTONES */}
-            <div className="actions">
+            {/* CONTENIDO SCROLL INTERNO */}
+            <div className="card-body">
 
-                <button className="reject" onClick={handleReject}>
-                    ✕
-                </button>
+                {bio && <p className="card-bio">{bio}</p>}
 
-                <button className="super">
-                    ★
-                </button>
+                {searching?.length > 0 && (
+                <div className="card-section">
+                    <strong>Busca</strong>
+                    <div className="tags">
+                    {searching.map((item, i) => (
+                        <span key={i}>{item}</span>
+                    ))}
+                    </div>
+                </div>
+                )}
 
-                <button className="like" onClick={handleLike}>
-                    ❤
-                </button>
+                {interests?.length > 0 && (
+                <div className="card-section">
+                    <strong>Intereses</strong>
+                    <div className="tags">
+                    {interests.map((item, i) => (
+                        <span key={i}>{item}</span>
+                    ))}
+                    </div>
+                </div>
+                )}
 
             </div>
 
+            </div>
+
+            {/* BOTONES FLOTANTES */}
+            <div className="actions">
+            <button className="reject" onClick={handleReject}>✕</button>
+            <button className="super">★</button>
+            <button className="like" onClick={handleLike}>❤</button>
+            </div>
+
         </div>
-    );
+        );
 }
