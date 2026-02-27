@@ -68,7 +68,6 @@ export default function Onboarding() {
 
                         {current !== slides.length - 1 && (
                             <button
-                                className="btn-skip"
                                 onClick={() => window.location.href = "/login"}
                             >
                                 Saltar

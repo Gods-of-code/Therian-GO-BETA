@@ -80,6 +80,35 @@ INDEXES = [
         "keys": [("type", 1), ("code_name", 1)],
         "options": {"unique": True, "name": "ix_catalogs_type_code_unique"},
     },
+
+    # REFRESH TOKENS
+    {
+        "collection": "refresh_tokens",
+        "keys": [("token_hash", 1)],
+        "options": {"unique": True, "name": "ix_refresh_tokens_token_hash_unique"},
+    },
+    {
+        "collection": "refresh_tokens",
+        "keys": [("user_id", 1)],
+        "options": {"name": "ix_refresh_tokens_user_id"},
+    },
+    {
+        "collection": "refresh_tokens",
+        "keys": [("expires_at", 1)],
+        "options": {"expireAfterSeconds": 0, "name": "ix_refresh_tokens_expires_at_ttl"},
+    },
+
+    # PASSWORD RESET
+    {
+        "collection": "password_reset_tokens",
+        "keys": [("token_hash", 1)],
+        "options": {"unique": True, "name": "ix_password_reset_tokens_token_hash_unique"},
+    },
+    {
+        "collection": "password_reset_tokens",
+        "keys": [("expires_at", 1)],
+        "options": {"expireAfterSeconds": 0, "name": "ix_password_reset_tokens_expires_at_ttl"},
+    },
 ]
 
 
