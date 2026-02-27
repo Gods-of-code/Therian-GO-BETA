@@ -1,58 +1,52 @@
 .discover-container {
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 8px;
     background: linear-gradient(135deg, #f3f0ff, #ffffff);
-    overflow: hidden;
-    position: relative;
 }
 
-    /* CARD PRINCIPAL */
 .card {
     width: 92%;
     max-width: 380px;
-    height: 85vh;
-    border-radius: 28px;
+    height: 72vh;
+    border-radius: 26px;
     overflow: hidden;
     background: white;
-    position: relative;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
+    position: relative;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+    transition: transform 0.45s ease, opacity 0.45s ease;
 }
 
-    /* SWIPE */
 .card.left {
-    transform: translateX(-400px) rotate(-15deg);
+    transform: translateX(-120%) rotate(-15deg);
     opacity: 0;
 }
 
 .card.right {
-    transform: translateX(400px) rotate(15deg);
+    transform: translateX(120%) rotate(15deg);
     opacity: 0;
 }
 
-    /* IMAGEN */
 .card-image {
-    height: 55%;
+    height: 40%;
     background-size: cover;
     background-position: center;
     position: relative;
     display: flex;
     align-items: flex-end;
-    padding: 20px;
+    padding: 16px;
 }
 
-    /* GRADIENTE OSCURO */
 .image-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
 }
 
-    /* TEXTO SOBRE IMAGEN */
 .card-header {
     position: relative;
     color: white;
@@ -61,39 +55,39 @@
 
 .card-header h2 {
     margin: 0;
-    font-size: 22px;
+    font-size: 18px;
+}
+
+.animal-type {
+    display: inline-block;
+    background: #6a2c91;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-top: 6px;
 }
 
 .location {
-    font-size: 14px;
+    font-size: 12px;
+    margin-top: 4px;
     opacity: 0.9;
 }
 
-    /* CUERPO SCROLL INTERNO */
 .card-body {
     flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-    /* BIO */
-.card-bio {
-    font-size: 14px;
-    margin-bottom: 16px;
-}
-
-    /* SECCIONES */
-.card-section {
-    margin-bottom: 14px;
+    padding: 14px 16px 90px 16px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .card-section strong {
-    font-size: 13px;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    font-size: 12px;
 }
 
-    /* TAGS */
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -103,27 +97,32 @@
 .tags span {
     background: #f0e6ff;
     color: #6a2c91;
-    padding: 6px 10px;
+    padding: 4px 9px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
 }
 
-    /* BOTONES */
 .actions {
     position: absolute;
-    bottom: 30px;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    gap: 20px;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    width: 100%;
 }
 
 .actions button {
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: none;
     font-size: 22px;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
     transition: transform 0.2s ease;
 }
 
@@ -133,11 +132,6 @@
 
 .reject {
     background: white;
-}
-
-.super {
-    background: #6a2c91;
-    color: white;
 }
 
 .like {

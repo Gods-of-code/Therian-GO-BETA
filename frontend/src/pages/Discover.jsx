@@ -1,88 +1,111 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useProfile } from "../pages/ProfileContext";
 import "./Discover.css";
 
 export default function Discover() {
 
+    useEffect(() => {
+        const originalOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        return () => {
+        document.body.style.overflow = originalOverflow;
+        };
+    }, []);
+
     const { profile } = useProfile();
-    const { name, age, bio, type, searching, interests, photos = [] } = profile;
+    const {
+        name,
+        age,
+        bio,
+        type,
+        searching,
+        interests,
+        photos = [],
+        location
+    } = profile;
 
     const [swipeDirection, setSwipeDirection] = useState(null);
+    const [isAnimating, setIsAnimating] = useState(false);
 
     const handleReject = () => {
+        if (isAnimating) return;
+        setIsAnimating(true);
         setSwipeDirection("left");
-        setTimeout(() => {
-            setSwipeDirection(null);
-        }, 400);
     };
 
     const handleLike = () => {
+        if (isAnimating) return;
+        setIsAnimating(true);
         setSwipeDirection("right");
-        setTimeout(() => {
-            setSwipeDirection(null);
-        }, 400);
     };
 
-    const currentImage = photos[10] || "https://picsum.photos/357";
+    const currentImage = photos[0] || "https://picsum.photos/500/800";
 
     return (
         <div className="discover-container">
-
-            <div className={`card ${swipeDirection}`}>
-
-            {/* IMAGEN */}
+        <div
+            className={`card ${swipeDirection || ""}`}
+            onTransitionEnd={() => {
+            if (swipeDirection) {
+                setTimeout(() => {
+                setSwipeDirection(null);
+                setIsAnimating(false);
+                }, 100);
+            }
+            }}
+        >
             <div
-                className="card-image"
-                style={{ backgroundImage: `url(${currentImage})` }}
+            className="card-image"
+            style={{ backgroundImage: `url(${currentImage})` }}
             >
-                <div className="image-overlay" />
-
-                <div className="card-header">
+            <div className="image-overlay"></div>
+            <div className="card-header">
                 <h2>{name}, {age}</h2>
-                {profile.location && (
-                    <p className="location">{profile.location}</p>
-                )}
-                </div>
+                {type && <span className="animal-type">{type}</span>}
+                {location && <p className="location">📍 {location}</p>}
+            </div>
             </div>
 
-            {/* CONTENIDO SCROLL INTERNO */}
             <div className="card-body">
-
-                {bio && <p className="card-bio">{bio}</p>}
-
-                {searching?.length > 0 && (
+            {bio && (
                 <div className="card-section">
-                    <strong>Busca</strong>
-                    <div className="tags">
+                <strong>Sobre mí</strong>
+                <p>{bio}</p>
+                </div>
+            )}
+
+            {searching?.length > 0 && (
+                <div className="card-section">
+                <strong>Busca</strong>
+                <div className="tags">
                     {searching.map((item, i) => (
-                        <span key={i}>{item}</span>
+                    <span key={i}>{item}</span>
                     ))}
-                    </div>
                 </div>
-                )}
+                </div>
+            )}
 
-                {interests?.length > 0 && (
+            {interests?.length > 0 && (
                 <div className="card-section">
-                    <strong>Intereses</strong>
-                    <div className="tags">
+                <strong>Intereses</strong>
+                <div className="tags">
                     {interests.map((item, i) => (
-                        <span key={i}>{item}</span>
+                    <span key={i}>{item}</span>
                     ))}
-                    </div>
                 </div>
-                )}
-
+                </div>
+            )}
             </div>
 
-            </div>
-
-            {/* BOTONES FLOTANTES */}
             <div className="actions">
-            <button className="reject" onClick={handleReject}>✕</button>
-            <button className="super">★</button>
-            <button className="like" onClick={handleLike}>❤</button>
+            <button className="reject" onClick={handleReject}>
+                ✕
+            </button>
+            <button className="like" onClick={handleLike}>
+                ❤
+            </button>
             </div>
-
         </div>
-        );
+        </div>
+    );
 }
