@@ -16,24 +16,24 @@ export default function EditProfile() {
     const [interests, setInterests] = useState(profile.interests);
     const [newInterest, setNewInterest] = useState("");
     const [lookingFor, setLookingFor] = useState({
-        amistad: profile.searching.includes("amistad"),
-        pareja: profile.searching.includes("pareja"),
-        comunidad: profile.searching.includes("comunidad"),
-        otros: profile.searching.includes("otros"),
+        Amistad: profile.searching.includes("Amistad"),
+        Pareja: profile.searching.includes("Pareja"),
+        Comunidad: profile.searching.includes("Comunidad"),
+        Otros: profile.searching.includes("Otros"),
     });
 
     const handleSave = () => {
         const newSearching = Object.entries(lookingFor)
-        .filter(([_, value]) => value)
-        .map(([key]) => key);
+            .filter(([_, value]) => value)
+            .map(([key]) => key);
 
         setProfile({
-        ...profile,
-        type,
-        city,
-        bio,
-        interests,
-        searching: newSearching,
+            ...profile,
+            type,
+            city,
+            bio,
+            interests,
+            searching: newSearching,
         });
 
         navigate("/app/profile");
@@ -41,8 +41,8 @@ export default function EditProfile() {
 
     const handleToggle = (key) => {
         setLookingFor({
-        ...lookingFor,
-        [key]: !lookingFor[key],
+            ...lookingFor,
+            [key]: !lookingFor[key],
         });
     };
 
@@ -58,124 +58,113 @@ export default function EditProfile() {
     };
 
     return (
-        <div className="p-4">
+        <div className="edit-profile">
 
-        {/* Header */}
-        <div className="flex items-center mb-5">
-            <button
-            onClick={() => navigate("/app/profile")}
-            className="flex items-center gap-1.5 bg-transparent border-none text-sm font-semibold text-[#6f2d91] p-0 cursor-pointer"
-            >
-            <img src={flecha} alt="Salir" className="w-[18px] h-[18px]" />
-            <span>Salir</span>
-            </button>
-        </div>
-
-        {/* Type */}
-        <div className="mt-6">
-            <h3 className="text-base font-bold mb-2 text-gray-800">Type</h3>
-            <select
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            className="w-full px-3 py-2 text-sm text-gray-800 bg-white border-2 border-[#6f2d91] rounded-xl outline-none"
-            >
-            {TYPE_OPTIONS.map((option) => (
-                <option key={option} value={option.toLowerCase()}>
-                {option}
-                </option>
-            ))}
-            </select>
-        </div>
-
-        {/* Ciudad */}
-        <div className="mt-6">
-            <h3 className="text-base font-bold mb-2 text-gray-800">Ciudad</h3>
-            <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className="w-full px-3 py-2 text-sm text-gray-800 border-2 border-[#6f2d91] rounded-xl outline-none"
-            />
-        </div>
-
-        {/* Sobre mí */}
-        <div className="mt-6">
-            <h3 className="text-base font-bold mb-2 text-gray-800">Sobre mí</h3>
-            <textarea
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            rows={4}
-            className="w-full px-3 py-2 text-sm text-gray-800 border-2 border-[#6f2d91] rounded-xl resize-none outline-none"
-            />
-        </div>
-
-        {/* Intereses */}
-        <div className="mt-6">
-            <h3 className="text-base font-bold mb-2 text-gray-800">Intereses</h3>
-
-            <div className="flex flex-wrap gap-2 mb-3">
-            {interests.map((interest, index) => (
-                <span
-                key={index}
-                className="inline-flex items-center gap-1.5 px-3 py-1 text-[13px] font-medium text-white bg-[#6f2d91] rounded-full"
-                >
-                {interest}
-                <button
-                    onClick={() => handleRemoveInterest(index)}
-                    className="text-white text-base leading-none"
-                >
-                    ×
+            {/* Header */}
+            <div className="edit-header">
+                <button onClick={() => navigate("/app/profile")} className="edit-exit-btn">
+                    <img src={flecha} alt="Salir" />
+                    <span>Salir</span>
                 </button>
-                </span>
-            ))}
             </div>
 
-            <div className="flex items-center gap-2">
-            <input
-                type="text"
-                value={newInterest}
-                onChange={(e) => setNewInterest(e.target.value)}
-                placeholder="Añadir interés"
-                onKeyDown={(e) => e.key === "Enter" && handleAddInterest()}
-                className="w-full px-3 py-2 text-sm text-gray-800 border-2 border-[#6f2d91] rounded-xl outline-none"
-            />
-            <button
-                onClick={handleAddInterest}
-                className="px-4 py-2 text-lg text-white bg-[#6f2d91] rounded-xl"
-            >
-                +
-            </button>
+            {/* Type */}
+            <div className="edit-section">
+                <h3 className="edit-section-title">Type</h3>
+                <select
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                    className="edit-select"
+                >
+                    {TYPE_OPTIONS.map((option) => (
+                        <option key={option} value={option.toLowerCase()}>
+                            {option}
+                        </option>
+                    ))}
+                </select>
             </div>
-        </div>
 
-        {/* Buscando */}
-        <div className="mt-6">
-            <h3 className="text-base font-bold mb-2 text-gray-800">Buscando</h3>
-
-            <div className="flex flex-col gap-4 mt-2">
-            {Object.entries(lookingFor).map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-700 capitalize">
-                    {key}
-                </span>
-
+            {/* Ciudad */}
+            <div className="edit-section">
+                <h3 className="edit-section-title">Ciudad</h3>
                 <input
-                    type="checkbox"
-                    checked={value}
-                    onChange={() => handleToggle(key)}
-                    className="w-5 h-5 accent-[#6f2d91] cursor-pointer"
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    className="edit-input"
                 />
-                </div>
-            ))}
             </div>
-        </div>
 
-        {/* Guardar */}
-        <div className="flex justify-center mt-8 mb-6">
-            <Button onClick={handleSave}>
-            Guardar cambios
-            </Button>
-        </div>
+            {/* Sobre mí */}
+            <div className="edit-section">
+                <h3 className="edit-section-title">Sobre mí</h3>
+                <textarea
+                    value={bio}
+                    onChange={(e) => setBio(e.target.value)}
+                    rows={4}
+                    placeholder="Cuéntale a los demás algo sobre ti!"
+                    className="edit-textarea"
+                />
+            </div>
+
+            {/* Intereses */}
+            <div className="edit-section">
+                <h3 className="edit-section-title">Intereses</h3>
+
+                <div className="edit-interests">
+                    {interests.map((interest, index) => (
+                        <span key={index} className="edit-interest">
+                            {interest}
+                            <button
+                                onClick={() => handleRemoveInterest(index)}
+                                className="edit-interest-remove"
+                            >
+                                ×
+                            </button>
+                        </span>
+                    ))}
+                </div>
+
+                <div className="edit-interest-add">
+                    <input
+                        type="text"
+                        value={newInterest}
+                        onChange={(e) => setNewInterest(e.target.value)}
+                        placeholder="Añadir interés"
+                        onKeyDown={(e) => e.key === "Enter" && handleAddInterest()}
+                        className="edit-input"
+                    />
+                    <button onClick={handleAddInterest} className="edit-interest-btn">
+                        +
+                    </button>
+                </div>
+            </div>
+
+            {/* Buscando */}
+            <div className="edit-section">
+                <h3 className="edit-section-title">Buscando</h3>
+
+                <div className="looking-options">
+                    {Object.entries(lookingFor).map(([key, value]) => (
+                        <div key={key} className="looking-row">
+                            <span className="looking-label capitalize">{key}</span>
+                            <label className="toggle-switch">
+                                <input
+                                    type="checkbox"
+                                    checked={value}
+                                    onChange={() => handleToggle(key)}
+                                />
+                                <span className="toggle-slider"></span>
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Guardar */}
+            <div className="edit-save-btn">
+                <Button onClick={handleSave}>Guardar cambios</Button>
+            </div>
 
         </div>
     );

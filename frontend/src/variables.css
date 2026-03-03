@@ -1,13 +1,25 @@
 :root {
     --primary: #6E2C91;
     --primary-light: #8E44AD;
-    --background: #f8d6f8;
-    --text-dark: #2D1B3D;
-    --text-light: #6C5A7A;
-    --white: #FFFFFF;
-
+    --bg-main: #f8f0ff;
+    --bg-card: #ffffff;
+    --text-main: #2D1B3D;
+    --text-secondary: #6C5A7A;
+    --border-light: #e0d0f0;
+    --toggle-off: #ddd;
+    --toggle-on: #6E2C91;
     --radius: 30px;
     --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-
     --transition: all 0.3s ease;
+}
+
+body.dark {
+    --bg-main: #3d2c47;
+    --bg-card: #2e1e38;
+    --bg-nav: #2a1634;
+    --text-main: #ffffff;
+    --text-secondary: #bdaed1;
+    --border-light: rgba(255, 255, 255, 0.08);
+    --toggle-off: #b0a1de;
+    --toggle-on: #684b70;
 }

@@ -54,15 +54,28 @@ export default function Profile() {
                 </div>
             )}
 
+            {profile.searching?.length > 0 && (
+                <div className="profile-searching">
+                    <span className="profile-searching-label">Buscando:</span>
+                    <div className="profile-searching-values">
+                        {profile.searching.map((item, index) => (
+                            <span key={index} className="profile-searching-value">
+                                {item}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
+
             {bio && (
                 <div className="profile-section">
                     <h3>Sobre mí</h3>
-                    <p>{bio}</p>
+                    <p className="profile-bio">{bio}</p>
                 </div>
             )}
 
             {interests?.length > 0 && (
-                <div className="profile-section">
+                <div className="profile-section-title">
                     <h3>Intereses</h3>
                     <div className="profile-interests">
                         {interests.map((interest, index) => (
@@ -75,7 +88,7 @@ export default function Profile() {
             )}
 
             {/* FOTOS */}
-            <div className="profile-section">
+            <div className="profile-section-title">
                 <h3>Fotos</h3>
 
                 <div className="photos-grid">
