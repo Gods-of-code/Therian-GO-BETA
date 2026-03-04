@@ -16,20 +16,22 @@
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    min-height: 0;
 }
 
 .app-wrapper {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    background: #e9e3ec;
-    padding: 20px 0;
     background: var(--bg-main);
+    padding: 20px 0;
+    overflow: hidden;
 }
 
 .app-container {
     width: 100%;
     max-width: 420px;
+    height: 100%;
     background: var(--bg-card);
     border-radius: 30px;
     box-shadow: var(--shadow);
